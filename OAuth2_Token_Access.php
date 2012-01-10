@@ -13,22 +13,22 @@ class OAuth2_Token_Access extends OAuth2_Token
 	/**
 	 * @var  string  access_token
 	 */
-	protected $access_token;
+	public $access_token;
 
 	/**
 	 * @var  int  expires
 	 */
-	protected $expires;
+	public $expires;
 
 	/**
 	 * @var  string  refresh_token
 	 */
-	protected $refresh_token;
+	public $refresh_token;
 
 	/**
 	 * @var  string  uid
 	 */
-	protected $uid;
+	public $uid;
 
 	/**
 	 * Sets the token, expiry, etc values.

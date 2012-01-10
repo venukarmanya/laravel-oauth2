@@ -63,12 +63,12 @@ abstract class OAuth2_Provider {
 		}
 
 		$this->client_id = $options['id'];
-		
+
 		isset($options['callback']) and $this->callback = $options['callback'];
 		isset($options['secret']) and $this->client_secret = $options['secret'];
 		isset($options['scope']) and $this->scope = $options['scope'];
 
-		$this->redirect_uri = '/'.ltrim(Laravel\URI::current(), '/');
+		$this->redirect_uri = URL::to(URI::current()); // '/'.ltrim(Laravel\URI::current(), '/');
 	}
 
 	/**
@@ -105,7 +105,7 @@ abstract class OAuth2_Provider {
 
 	/*
 	* Get an authorization code from Facebook.  Redirects to Facebook, which this redirects back to the app using the redirect address you've set.
-	*/	
+	*/
 	public function authorize($options = array())
 	{
 		$state = md5(uniqid(rand(), TRUE));
@@ -113,7 +113,7 @@ abstract class OAuth2_Provider {
 
 		$params = array(
 			'client_id' 		=> $this->client_id,
-			'redirect_uri' 		=> isset($options['redirect_uri']) ? $options['redirect_uri'] : $this->redirect_uri,
+			'redirect_url' 		=> isset($options['redirect_uri']) ? $options['redirect_uri'] : $this->redirect_uri,
 			'state' 			=> $state,
 			'scope'				=> is_array($this->scope) ? implode($this->scope_seperator, $this->scope) : $this->scope,
 			'response_type' 	=> 'code',
@@ -129,7 +129,7 @@ abstract class OAuth2_Provider {
 	*
 	* @param	string	The access code
 	* @return	object	Success or failure along with the response details
-	*/	
+	*/
 	public function access($code, $options = array())
 	{
 		$params = array(
@@ -142,7 +142,7 @@ abstract class OAuth2_Provider {
 		{
 			case 'authorization_code':
 				$params['code'] = $code;
-				$params['redirect_uri'] = isset($options['redirect_uri']) ? $options['redirect_uri'] : $this->redirect_uri;
+				$params['redirect_url'] = isset($options['redirect_uri']) ? $options['redirect_uri'] : $this->redirect_uri;
 			break;
 
 			case 'refresh_token':
@@ -150,7 +150,7 @@ abstract class OAuth2_Provider {
 			break;
 		}
 
-		$response = null;	
+		$response = null;
 		$url = $this->url_access_token();
 
 		switch ($this->method)
@@ -161,7 +161,7 @@ abstract class OAuth2_Provider {
 				$url .= '?'.http_build_query($params);
 				$response = file_get_contents($url);
 
-				parse_str($response, $return); 
+				parse_str($response, $return);
 
 			break;
 
@@ -191,7 +191,7 @@ abstract class OAuth2_Provider {
 		{
 			throw new OAuth2_Exception($return);
 		}
-		
+
 		switch ($params['grant_type'])
 		{
 			case 'authorization_code':
@@ -202,7 +202,7 @@ abstract class OAuth2_Provider {
 				return OAuth2_Token::factory('refresh', $return);
 			break;
 		}
-		
+
 	}
 
 }
