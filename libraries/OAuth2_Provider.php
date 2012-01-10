@@ -68,7 +68,7 @@ abstract class OAuth2_Provider {
 		isset($options['secret']) and $this->client_secret = $options['secret'];
 		isset($options['scope']) and $this->scope = $options['scope'];
 
-		$this->redirect_uri = site_url(get_instance()->uri->uri_string());
+		$this->redirect_uri = '/'.ltrim(Laravel\URI::current(), '/');
 	}
 
 	/**
@@ -109,7 +109,7 @@ abstract class OAuth2_Provider {
 	public function authorize($options = array())
 	{
 		$state = md5(uniqid(rand(), TRUE));
-		get_instance()->session->set_userdata('state', $state);
+		Laravel\Session::put('state', $state);
 
 		$params = array(
 			'client_id' 		=> $this->client_id,
@@ -119,8 +119,9 @@ abstract class OAuth2_Provider {
 			'response_type' 	=> 'code',
 			'approval_prompt' => 'force' // - google force-recheck
 		);
-		
-		redirect($this->url_authorize().'?'.http_build_query($params));
+
+		$url = $this->url_authorize().'?'.http_build_query($params);
+		return Laravel\Redirect::to($url);
 	}
 
 	/*

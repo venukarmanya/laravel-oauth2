@@ -61,7 +61,7 @@ class OAuth2_Provider_Google extends OAuth2_Provider {
 		$user = json_decode(file_get_contents($url), true);
 		return array(
 			'uid' => $user['id'],
-			'nickname' => url_title($user['name'], '_', true),
+			'nickname' => strtolower(Laravel\Str::slug($user['name'], '_')),
 			'name' => $user['name'],
 			'first_name' => $user['given_name'],
 			'last_name' => $user['family_name'],

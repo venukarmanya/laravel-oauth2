@@ -1,4 +1,4 @@
-# Codeigniter OAuth 2.0
+# Laravel OAuth 2.0
 
 Authorize users with your application in a driver-base fashion meaning one implementation works for multiple OAuth 2 providers. This is only to authenticate onto OAuth2 providers and not to build an OAuth2 service.
 
@@ -7,33 +7,21 @@ Note that this Spark ONLY provides the authorization mechanism. There's an examp
 ## Currently Supported
 
 - Facebook
-- Foursquare
 - GitHub
 - Google
-- Instagram
-- Unmagnify
 - Windows Live
 - YouTube
-
-## TODO
-
-This is a developing library and currently only supports a small number of OAuth2 providers - more refactoring of code is to follow with a full implementation of an authentication class to store users details.
-
-Requests should be done through a more stable system, there however isn't a request class in CodeIgniter.
-
-This does not and will never support any OAuth 1 providers. For that use [codeigniter-oauth] (https://github.com/calvinfroedge/codeigniter-oauth).
 
 ## Usage Example
 
 http://example.com/auth/session/facebook
 
 ```php
-public function session($provider)
+public function action_session($provider)
 {
-	$this->load->helper('url_helper');
-	$this->load->library('oauth2');
+	Bundle::start('laravel-oauth2');
 	
-	$provider = $this->oauth2->provider($provider, array(
+	$provider = OAuth2::provider($provider, array(
 		'client_id' => 'your-client-id',
 		'client_secret' => 'your-client-secret',
 	));
@@ -41,7 +29,7 @@ public function session($provider)
 	if ( ! isset($_GET['code']))
 	{
 		// By sending no options it'll come back here
-		$provider->authorize();
+		return $provider->authorize();
 	}
 	else
 	{

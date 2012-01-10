@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('APP_PATH')) exit('No direct script access allowed');
 
 // OAuth2 Provider for Windows Live Connect
 class OAuth2_Provider_Windowslive extends OAuth2_Provider
@@ -41,7 +41,7 @@ class OAuth2_Provider_Windowslive extends OAuth2_Provider
 		return array(
 			'uid' 		=> $user->id,
 			'name' 		=> $user->name,
-			'nickname' 	=> url_title($user->name, '_', true),
+			'nickname' => strtolower(Laravel\Str::slug($user->name, '_')),
 //			'location' 	=> $user[''], # scope wl.postal_addresses is required
 										  # but won't be implemented by default
 			'locale' 	=> $user->locale,

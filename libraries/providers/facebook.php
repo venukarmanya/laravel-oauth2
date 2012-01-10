@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('APP_PATH')) exit('No direct script access allowed');
 
 class OAuth2_Provider_Facebook extends OAuth2_Provider
 {  
