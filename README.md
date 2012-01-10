@@ -24,8 +24,8 @@ public function action_session($provider)
 	Bundle::start('laravel-oauth2');
 	
 	$provider = OAuth2::provider($provider, array(
-		'client_id' => 'your-client-id',
-		'client_secret' => 'your-client-secret',
+		'id' => 'your-client-id',
+		'secret' => 'your-client-secret',
 	));
 
 	if ( ! isset($_GET['code']))
