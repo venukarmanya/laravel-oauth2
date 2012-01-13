@@ -42,21 +42,4 @@ class OAuth2_Exception extends Exception {
 
 		parent::__construct($message, $code);
 	}
-
-	/**
-	 * To make debugging easier.
-	 *
-	 * @returns
-	 *   The string representation of the error.
-	 */
-	public function __toString()
-	{
-		$str = $this->getType() . ': ';
-		if ($this->code != 0)
-		{
-			$str .= $this->code . ': ';
-		}
-		return $str . $this->message;
-	}
-
 }
