@@ -1,4 +1,4 @@
-<?php if ( ! defined('APP_PATH')) exit('No direct script access allowed');
+<?php
 
 // OAuth2 Provider for Windows Live Connect
 class OAuth2_Provider_Windowslive extends OAuth2_Provider
@@ -6,24 +6,24 @@ class OAuth2_Provider_Windowslive extends OAuth2_Provider
 	// variables
 	public $name = 'windowslive';
 	public $uid_key = 'uid';
-	
+
 	public $scope = array('wl.basic', 'wl.emails');
-	
+
 	// authorise url
 	public function url_authorize()
 	{
 		return 'https://oauth.live.com/authorize';
 	}
-	
+
 	// access token url
 	public function url_access_token()
 	{
 		return 'https://oauth.live.com/token';
 	}
-	
+
 	// get basic user information
 	/********************************
-	** this can be extended through the 
+	** this can be extended through the
 	** use of scopes, check out the document at
 	** http://msdn.microsoft.com/en-gb/library/hh243648.aspx#user
 	*********************************/
@@ -33,7 +33,7 @@ class OAuth2_Provider_Windowslive extends OAuth2_Provider
 		$url = 'https://apis.live.net/v5.0/me?'.http_build_query(array(
 			'access_token' => $token->access_token,
 		));
-		
+
 		// perform network request
 		$user = json_decode(file_get_contents($url));
 
