@@ -1,9 +1,9 @@
-<?php if ( ! defined('APP_PATH')) exit('No direct script access allowed');
+<?php
 
 class OAuth2_Provider_Github extends OAuth2_Provider {
-	
+
 	public $name = 'github';
-	
+
 	// https://api.github.com
 
 	public function url_authorize()

@@ -1,11 +1,11 @@
-<?php if ( ! defined('APP_PATH')) exit('No direct script access allowed');
+<?php
 
 class OAuth2_Provider_Facebook extends OAuth2_Provider
-{  
+{
 	public $name = 'facebook';
 
 	public $uid_key = 'uid';
-	
+
 	public $scope = array('email', 'read_stream');
 
 	public function url_authorize()
