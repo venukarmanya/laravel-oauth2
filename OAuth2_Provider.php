@@ -32,6 +32,11 @@ abstract class OAuth2_Provider {
 	public $callback = null;
 
 	/**
+	 * @var  string scope
+	 */
+	public $scope;
+
+	/**
 	 * @var  array  additional request parameters to be used for remote requests
 	 */
 	protected $params = array();
