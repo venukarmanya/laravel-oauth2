@@ -2,6 +2,8 @@
 
 namespace OAuth2\Provider;
 
+use OAuth2\Provider\Google;
+
 class Youtube extends Google {
 
 	public $name = 'youtube';

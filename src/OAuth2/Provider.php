@@ -79,7 +79,7 @@ abstract class Provider {
 		isset($options['secret']) and $this->client_secret = $options['secret'];
 		isset($options['scope']) and $this->scope = $options['scope'];
 
-		$this->redirect_uri = Laravel\URL::to(Laravel\Request::path()); // '/'.ltrim(Laravel\URI::current(), '/');
+		$this->redirect_uri = \URL::to(\Request::path()); // '/'.ltrim(Laravel\URI::current(), '/');
 	}
 
 	/**
@@ -120,7 +120,7 @@ abstract class Provider {
 	public function authorize($options = array())
 	{
 		$state = md5(uniqid(rand(), TRUE));
-		Laravel\Session::put('state', $state);
+		\Session::put('state', $state);
 
 		$params = array(
 			'client_id' 		=> $this->client_id,
@@ -132,7 +132,7 @@ abstract class Provider {
 		);
 
 		$url = $this->url_authorize().'?'.http_build_query($params);
-		return Laravel\Redirect::to($url);
+		return \Redirect::to($url);
 	}
 
 	/*

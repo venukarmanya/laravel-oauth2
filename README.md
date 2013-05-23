@@ -27,9 +27,14 @@ After that, run composer install to install Laravel OAuth 2.0.
 http://example.com/auth/session/facebook
 
 ```php
+
+use OAuth2\OAuth2;
+use OAuth2\Token_Access;
+use OAuth2\Exception as OAuth2_Exception;
+
 public function action_session($provider)
 {
-	$provider = TaylorOtwell\OAuth2::provider($provider, array(
+	$provider = OAuth2::provider($provider, array(
 		'id' => 'your-client-id',
 		'secret' => 'your-client-secret',
 	));
@@ -46,7 +51,7 @@ public function action_session($provider)
 		{
 			$params = $provider->access($_GET['code']);
 			
-        		$token = new TaylorOtwell\OAuth2_Token_Access(array(
+        		$token = new Token_Access(array(
         			'access_token' => $params->access_token
         		));
         		$user = $provider->get_user_info($token);
@@ -57,7 +62,7 @@ public function action_session($provider)
 			var_dump($user);
 		}
 		
-		catch (TaylorOtwell\OAuth2_Exception $e)
+		catch (OAuth2_Exception $e)
 		{
 			show_error('That didnt work: '.$e);
 		}

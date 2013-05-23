@@ -2,6 +2,7 @@
 
 namespace OAuth2\Provider;
 
+use OAuth2\Provider;
 use OAuth2\Token\Token_Access;
 
 class Github extends Provider {
