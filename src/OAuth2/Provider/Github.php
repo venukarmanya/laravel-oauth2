@@ -1,6 +1,8 @@
-<?php
+<?php namespace OAuth2\Provider
 
-class OAuth2_Provider_Github extends OAuth2_Provider {
+use OAuth2\Token\Token_Access;
+
+class Github extends Provider {
 
 	public $name = 'github';
 
@@ -16,7 +18,7 @@ class OAuth2_Provider_Github extends OAuth2_Provider {
 		return 'https://github.com/login/oauth/access_token';
 	}
 
-	public function get_user_info(OAuth2_Token_Access $token)
+	public function get_user_info(Token_Access $token)
 	{
 		$url = 'https://api.github.com/user?'.http_build_query(array(
 			'access_token' => $token->access_token,

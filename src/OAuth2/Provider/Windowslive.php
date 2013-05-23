@@ -1,7 +1,9 @@
-<?php
+<?php namespace OAuth2\Provider;
+
+use OAuth2\Token\Token_Access;
 
 // OAuth2 Provider for Windows Live Connect
-class OAuth2_Provider_Windowslive extends OAuth2_Provider
+class Windowslive extends Provider
 {
 	// variables
 	public $name = 'windowslive';
@@ -27,7 +29,7 @@ class OAuth2_Provider_Windowslive extends OAuth2_Provider
 	** use of scopes, check out the document at
 	** http://msdn.microsoft.com/en-gb/library/hh243648.aspx#user
 	*********************************/
-	public function get_user_info(OAuth2_Token_Access $token)
+	public function get_user_info(Token_Access $token)
 	{
 		// define the get user information token
 		$url = 'https://apis.live.net/v5.0/me?'.http_build_query(array(

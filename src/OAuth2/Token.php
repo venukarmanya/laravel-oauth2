@@ -1,4 +1,8 @@
-<?php
+<?php namespace OAuth2;
+
+use OAuth2\Token\Token_Access;
+use OAuth2\Token\Token_Authorize;
+
 /**
  * OAuth2 Token
  *
@@ -8,7 +12,7 @@
  * @copyright  (c) 2011 HappyNinjas Ltd
  */
 
-abstract class OAuth2_Token {
+abstract class Token {
 
 	/**
 	 * Create a new token object.
@@ -21,7 +25,7 @@ abstract class OAuth2_Token {
 	 */
 	public static function factory($type = 'access', array $options = null)
 	{
-		$class = 'OAuth2_Token_'.ucfirst($type);
+		$class = 'Token_'.ucfirst($type);
 		
 		return new $class($options);
 	}

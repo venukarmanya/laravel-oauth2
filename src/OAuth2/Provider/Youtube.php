@@ -1,6 +1,6 @@
-<?php
+<?php namespace OAuth2\Provider;
 
-class OAuth2_Provider_Youtube extends OAuth2_Provider_Google {
+class Youtube extends Google {
 
 	public $name = 'youtube';
 

@@ -1,6 +1,9 @@
-<?php
+<?php namespace OAuth2\Provider;
 
-class OAuth2_Provider_Google extends OAuth2_Provider {  
+use OAuth2\Token\Token_Access;
+use OAuth2\Exception;
+
+class Google extends Provider {  
 	
 	public $name = 'google';
 	
@@ -46,13 +49,13 @@ class OAuth2_Provider_Google extends OAuth2_Provider {
 	{
 		if ($code === null)
 		{
-			throw new OAuth2_Exception(array('message' => 'Expected Authorization Code from '.ucfirst($this->name).' is missing'));
+			throw new Exception(array('message' => 'Expected Authorization Code from '.ucfirst($this->name).' is missing'));
 		}
 
 		return parent::access($code, $options);
 	}
 
-	public function get_user_info(OAuth2_Token_Access $token)
+	public function get_user_info(Token_Access $token)
 	{
 		$url = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&'.http_build_query(array(
 			'access_token' => $token->access_token,

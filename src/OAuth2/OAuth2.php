@@ -1,4 +1,4 @@
-<?php
+<?php namespace OAuth2;
 
 /**
  * OAuth2.0
@@ -19,8 +19,8 @@ class OAuth2 {
 	 */
 	public static function provider($name, array $options = NULL)
 	{
-		$class = 'OAuth2_Provider_'.ucfirst($name);
+		$class = ucfirst($name);
 
-		return new $class($options);
+		return new OAuth2\Provider\$class($options);
 	}
 }

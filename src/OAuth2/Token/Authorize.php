@@ -1,4 +1,7 @@
-<?php
+<?php namespace OAuth2;
+
+use OAuth2\Exception;
+
 /**
  * OAuth2 Token
  *
@@ -8,7 +11,7 @@
  * @copyright  (c) 2011 HappyNinjas Ltd
  */
 
-class OAuth2_Token_Authorize extends OAuth2_Token
+class Token_Authorize extends Token
 {
 	/**
 	 * @var  string  code

@@ -1,4 +1,8 @@
-<?php
+<?php namespace OAuth2;
+
+use OAuth2\Exception;
+use OAuth2\Token;
+
 /**
  * OAuth Provider
  *
@@ -9,7 +13,7 @@
  * @license    http://philsturgeon.co.uk/code/dbad-license
  */
 
-abstract class OAuth2_Provider {
+abstract class Provider {
 
 	/**
 	 * @var  string  provider name
@@ -59,7 +63,7 @@ abstract class OAuth2_Provider {
 		if ( ! $this->name)
 		{
 			// Attempt to guess the name from the class name
-			$this->name = strtolower(substr(get_class($this), strlen('OAuth2_Provider_')));
+			$this->name = strtolower(get_class($this));
 		}
 
 		if (empty($options['id']))
@@ -189,22 +193,22 @@ abstract class OAuth2_Provider {
 			break;
 
 			default:
-				throw new OutOfBoundsException("Method '{$this->method}' must be either GET or POST");
+				throw new \OutOfBoundsException("Method '{$this->method}' must be either GET or POST");
 		}
 
 		if (isset($return['error']))
 		{
-			throw new OAuth2_Exception($return);
+			throw new Exception($return);
 		}
 
 		switch ($params['grant_type'])
 		{
 			case 'authorization_code':
-				return OAuth2_Token::factory('access', $return);
+				return Token::factory('access', $return);
 			break;
 
 			case 'refresh_token':
-				return OAuth2_Token::factory('refresh', $return);
+				return Token::factory('refresh', $return);
 			break;
 		}
 

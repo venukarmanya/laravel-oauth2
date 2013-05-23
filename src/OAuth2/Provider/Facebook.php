@@ -1,6 +1,8 @@
-<?php
+<?php namespace OAuth2\Provider
 
-class OAuth2_Provider_Facebook extends OAuth2_Provider
+use OAuth2\Token\Token_Access;
+
+class Facebook extends Provider
 {
 	public $name = 'facebook';
 
@@ -18,7 +20,7 @@ class OAuth2_Provider_Facebook extends OAuth2_Provider
 		return 'https://graph.facebook.com/oauth/access_token';
 	}
 
-	public function get_user_info(OAuth2_Token_Access $token)
+	public function get_user_info(Token_Access $token)
 	{
 		$url = 'https://graph.facebook.com/me?'.http_build_query(array(
 			'access_token' => $token->access_token,
