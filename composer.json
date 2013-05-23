@@ -2,7 +2,7 @@
 	"name": "taylorotwell/laravel-oauth2",
 	"type": "library",
 	"description": "Authorize users in your application with multiple OAuth 2.0 providers.",
-	"keywords": ["oauth2"],
+	"keywords": ["laravel", "oauth2"],
 	"homepage": "http://github.com/madewithlove/laravel-oauth2",
 	"require": {
 		"laravel/framework": "4.0.*"
