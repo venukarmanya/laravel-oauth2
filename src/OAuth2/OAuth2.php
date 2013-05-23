@@ -1,4 +1,6 @@
-<?php namespace OAuth2;
+<?php
+
+namespace OAuth2;
 
 /**
  * OAuth2.0
@@ -6,7 +8,7 @@
  * @author Phil Sturgeon < @philsturgeon >
  */
 class OAuth2 {
-	
+
 	/**
 	 * Create a new provider.
 	 *
@@ -19,8 +21,8 @@ class OAuth2 {
 	 */
 	public static function provider($name, array $options = NULL)
 	{
-		$class = ucfirst($name);
+		$class = 'OAuth2\\Provider\\' . ucfirst($name);
 
-		return new OAuth2\Provider\$class($options);
+		return new $class($options);
 	}
 }

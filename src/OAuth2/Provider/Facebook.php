@@ -1,4 +1,6 @@
-<?php namespace OAuth2\Provider
+<?php
+
+namespace OAuth2\Provider;
 
 use OAuth2\Token\Token_Access;
 

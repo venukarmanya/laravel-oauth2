@@ -1,4 +1,6 @@
-<?php namespace OAuth2;
+<?php
+
+namespace OAuth2;
 
 use OAuth2\Exception;
 

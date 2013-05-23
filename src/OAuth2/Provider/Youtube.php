@@ -1,4 +1,6 @@
-<?php namespace OAuth2\Provider;
+<?php 
+
+namespace OAuth2\Provider;
 
 class Youtube extends Google {
 

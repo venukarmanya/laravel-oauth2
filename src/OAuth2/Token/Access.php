@@ -1,4 +1,7 @@
-<?php namespace OAuth2;
+<?php 
+
+namespace OAuth2;
+
 /**
  * OAuth2 Token
  *
