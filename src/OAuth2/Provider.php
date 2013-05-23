@@ -73,7 +73,7 @@ abstract class OAuth2_Provider {
 		isset($options['secret']) and $this->client_secret = $options['secret'];
 		isset($options['scope']) and $this->scope = $options['scope'];
 
-		$this->redirect_uri = URL::to(URI::current()); // '/'.ltrim(Laravel\URI::current(), '/');
+		$this->redirect_uri = Laravel\URL::to(Laravel\Request::path()); // '/'.ltrim(Laravel\URI::current(), '/');
 	}
 
 	/**

@@ -6,6 +6,14 @@ Authorize users with your application in a driver-base fashion meaning one imple
 
 Note that this Spark ONLY provides the authorization mechanism. There's an example controller below, however in a later version there will be a full controller.
 
+## Installation via Composer
+
+Add this to you composer.json file, in the require object;
+
+    "taylorotwell/laravel-oauth2": "0.2.*"
+
+After that, run composer install to install Laravel OAuth 2.0.
+
 ## Currently Supported
 
 - Facebook
@@ -21,9 +29,7 @@ http://example.com/auth/session/facebook
 ```php
 public function action_session($provider)
 {
-	Bundle::start('laravel-oauth2');
-	
-	$provider = OAuth2::provider($provider, array(
+	$provider = TaylorOtwell\OAuth2::provider($provider, array(
 		'id' => 'your-client-id',
 		'secret' => 'your-client-secret',
 	));
@@ -40,7 +46,9 @@ public function action_session($provider)
 		{
 			$params = $provider->access($_GET['code']);
 			
-        		$token = new OAuth2_Token_Access(array('access_token' => $params->access_token));
+        		$token = new TaylorOtwell\OAuth2_Token_Access(array(
+        			'access_token' => $params->access_token
+        		));
         		$user = $provider->get_user_info($token);
 
 			// Here you should use this information to A) look for a user B) help a new user sign up with existing data.
@@ -49,11 +57,10 @@ public function action_session($provider)
 			var_dump($user);
 		}
 		
-		catch (OAuth2_Exception $e)
+		catch (TaylorOtwell\OAuth2_Exception $e)
 		{
 			show_error('That didnt work: '.$e);
 		}
-		
 	}
 }
 ```

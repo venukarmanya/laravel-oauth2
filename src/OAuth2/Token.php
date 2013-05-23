@@ -23,8 +23,6 @@ abstract class OAuth2_Token {
 	{
 		$class = 'OAuth2_Token_'.ucfirst($type);
 		
-		include $class.'.php';
-		
 		return new $class($options);
 	}
 

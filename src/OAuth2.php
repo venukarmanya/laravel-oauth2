@@ -1,8 +1,4 @@
 <?php
-	
-include('OAuth2_Exception.php');
-include('OAuth2_Token.php');
-include('OAuth2_Provider.php');
 
 /**
  * OAuth2.0
@@ -23,11 +19,8 @@ class OAuth2 {
 	 */
 	public static function provider($name, array $options = NULL)
 	{
-		include_once 'providers/'.strtolower($name).'.php';
-		
 		$class = 'OAuth2_Provider_'.ucfirst($name);
 
 		return new $class($options);
 	}
-	
 }
