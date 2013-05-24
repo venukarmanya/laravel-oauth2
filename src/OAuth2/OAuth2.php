@@ -21,7 +21,7 @@ class OAuth2 {
 	 */
 	public static function provider($name, array $options = NULL)
 	{
-		$class = 'OAuth2\\Provider\\' . ucfirst($name);
+		$class = __NAMESPACE__ . '\\Provider\\' . ucfirst($name);
 
 		return new $class($options);
 	}

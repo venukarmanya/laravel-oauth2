@@ -2,8 +2,8 @@
 
 namespace OAuth2;
 
-use OAuth2\Token\Token_Access;
-use OAuth2\Token\Token_Authorize;
+use OAuth2\Token_Access;
+use OAuth2\Token_Authorize;
 
 /**
  * OAuth2 Token
@@ -27,7 +27,7 @@ abstract class Token {
 	 */
 	public static function factory($type = 'access', array $options = null)
 	{
-		$class = 'Token_'.ucfirst($type);
+		$class = __NAMESPACE__ . '\\Token_'.ucfirst($type);
 		
 		return new $class($options);
 	}

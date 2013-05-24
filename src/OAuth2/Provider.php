@@ -167,17 +167,14 @@ abstract class Provider {
 		switch ($this->method)
 		{
 			case 'GET':
-
 				// Need to switch to Request library, but need to test it on one that works
 				$url .= '?'.http_build_query($params);
 				$response = file_get_contents($url);
 
 				parse_str($response, $return);
-
 			break;
 
 			case 'POST':
-
 				$postdata = http_build_query($params);
 				$opts = array(
 					'http' => array(
@@ -191,7 +188,6 @@ abstract class Provider {
 				$response = file_get_contents($url, false, $context);
 
 				$return = json_decode($response, true);
-
 			break;
 
 			default:
