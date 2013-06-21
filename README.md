@@ -21,6 +21,8 @@ After that, run composer install to install Laravel OAuth 2.0.
 - Google
 - Windows Live
 - YouTube
+- Moves
+- Runkeeper
 
 ## Usage Example
 
