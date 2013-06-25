@@ -119,8 +119,15 @@ abstract class Provider {
 	*/
 	public function authorize($options = array())
 	{
-		$state = md5(uniqid(rand(), TRUE));
-		\Session::put('state', $state);
+		if(isset($options['state'])) {
+			// This means you're using your own checking mechanism
+			$state = $options['state'];
+		}
+		else {
+			// This puts it in the session, but the check doesn't exist yet.
+			$state = md5(uniqid(rand(), TRUE));
+			\Session::put('state', $state);
+		}
 
 		$params = array(
 			'client_id' 		=> $this->client_id,
