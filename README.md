@@ -1,6 +1,6 @@
 # Laravel OAuth 2.0
 
-**This is based on the CodeIgniter OAuth2 Spark maintained by Phil Sturgeon**
+**This is a port to Laravel 4 of Talor Otwell's Laravel-oAuth2 bundle. Which he based on the CodeIgniter OAuth2 Spark maintained by Phil Sturgeon**
 
 Authorize users with your application in a driver-base fashion meaning one implementation works for multiple OAuth 2 providers. This is only to authenticate onto OAuth2 providers and not to build an OAuth2 service.
 
@@ -10,7 +10,7 @@ Note that this Spark ONLY provides the authorization mechanism. There's an examp
 
 Add this to you composer.json file, in the require object;
 
-    "taylorotwell/laravel-oauth2": "0.2.*"
+    "madewithlove/laravel-oauth2": "0.2.*"
 
 After that, run composer install to install Laravel OAuth 2.0.
 

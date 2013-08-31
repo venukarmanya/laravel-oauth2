@@ -1,5 +1,5 @@
 {
-	"name": "taylorotwell/laravel-oauth2",
+	"name": "madewithlove/laravel-oauth2",
 	"type": "library",
 	"description": "Authorize users in your application with multiple OAuth 2.0 providers.",
 	"keywords": ["laravel", "oauth2"],
