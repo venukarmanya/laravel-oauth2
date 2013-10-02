@@ -48,6 +48,11 @@ abstract class Provider {
 	protected $params = array();
 
 	/**
+	 * @var array maps for providers that use non standard variable names
+	 */
+	protected $params_map = array();
+
+	/**
 	 * @var  string  the method to use when requesting tokens
 	 */
 	protected $method = 'GET';
@@ -137,6 +142,16 @@ abstract class Provider {
 			'response_type' 	=> 'code',
 			'approval_prompt' => 'force' // - google force-recheck
 		);
+
+		// Searches for params that have a non standard index
+		if ( ! empty($this->params_map)) {
+			foreach ($this->params_map as $param => $mapped) {
+				if (isset($params[$param])) {
+					$params[$mapped] = $params[$param];
+					unset($params[$param]);
+				}
+			}
+		}
 
 		$url = $this->url_authorize().'?'.http_build_query($params);
 		return \Redirect::to($url);

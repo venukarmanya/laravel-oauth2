@@ -23,6 +23,8 @@ After that, run composer install to install Laravel OAuth 2.0.
 - YouTube
 - Moves
 - Runkeeper
+- Foursquare
+- iHealth
 
 ## Usage Example
 
