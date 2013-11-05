@@ -73,7 +73,7 @@ class Google extends Provider {
 			'last_name' => $user['family_name'],
 			'email' => $user['email'],
 			'location' => null,
-			'image' => $user['picture'],
+			'image' => !empty($user['picture']) ? $user['picture'] : null,
 			'description' => null,
 			'urls' => array(),
 		);
