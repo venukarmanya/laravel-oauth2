@@ -11,7 +11,7 @@ namespace OAuth2;
  * @copyright  (c) 2011 HappyNinjas Ltd
  */
 
-class Token_Access extends Token
+class Token_Access extends Token implements \JsonSerializable
 {
 	/**
 	 * @var  string  access_token
@@ -76,4 +76,12 @@ class Token_Access extends Token
 		return (string) $this->access_token;
 	}
 
+	public function jsonSerialize() {
+		return array(
+			'access_token' => $this->access_token,
+			'expires' => $this->expires,
+			'refresh_token' => $this->refresh_token,
+			'uid' => $this->uid,
+		);
+	} 
 } // End OAuth2_Token_Access
