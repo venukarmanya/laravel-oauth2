@@ -79,12 +79,15 @@ abstract class Provider {
 		}
 
 		$this->client_id = $options['id'];
-
+		
+		// Set redirect uri
+		$this->redirect_uri = \URL::to(\Request::path()); // '/'.ltrim(Laravel\URI::current(), '/');
+			
+		// Set options
 		isset($options['callback']) and $this->callback = $options['callback'];
 		isset($options['secret']) and $this->client_secret = $options['secret'];
 		isset($options['scope']) and $this->scope = $options['scope'];
-
-		$this->redirect_uri = \URL::to(\Request::path()); // '/'.ltrim(Laravel\URI::current(), '/');
+		isset($options['redirect_uri']) and $this->redirect_uri = $options['redirect_uri'];
 	}
 
 	/**
