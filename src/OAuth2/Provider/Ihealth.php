@@ -13,7 +13,7 @@ class Ihealth extends Provider
 
 	// public $uid_key = 'uid';
 
-	public $scope = array('OpenApiBP', 'OpenApiWeight');
+	public $scope = array('OpenApiActivity', 'OpenApiBG', 'OpenApiBP', 'OpenApiSleep', 'OpenApiSpO2', 'OpenApiUserInfo', 'OpenApiWeight');
 
 	public $scope_seperator = ' ';
 
