@@ -53,4 +53,17 @@ class Windowslive extends Provider
 			'urls' 		=> array('Windows Live' => $user->link),
 		);
 	}
+	
+	public function get_user(Token_Access $token)
+	{
+		// define the get user information token
+		$url = 'https://apis.live.net/v5.0/me?'.http_build_query(array(
+			'access_token' => $token->access_token,
+		));
+
+		// perform network request
+		$user = json_decode(file_get_contents($url));
+		
+		return $user;
+	}
 }

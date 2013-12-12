@@ -56,4 +56,22 @@ class Mailchimp extends Provider {
 			'api_endpoint' 	=> $user->api_endpoint		
 		);
 	}
+	
+	public function get_user(Token_Access $token)
+	{
+		$url = 'https://login.mailchimp.com/oauth2/metadata';
+		
+		$opts = array(
+		  'http'=>array(
+		    'method'=>"GET",
+		    'header'=>"Accept: application/json\r\n" .
+		              "Authorization: OAuth $token->access_token\r\n"
+		  )
+		);
+		$context = stream_context_create($opts);
+		
+		$user = json_decode(file_get_contents($url, false, $context));
+		
+		return $user;
+	}
 }
