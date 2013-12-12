@@ -70,7 +70,7 @@ class Mailchimp extends Provider {
 		);
 		$context = stream_context_create($opts);
 		
-		$user = json_decode(file_get_contents($url, false, $context));
+		$user = json_decode(file_get_contents($url, false, $context), true);
 		
 		return $user;
 	}

@@ -48,7 +48,7 @@ class Github extends Provider {
 			'access_token' => $token->access_token,
 		));
 
-		$user = json_decode(file_get_contents($url));
+		$user = json_decode(file_get_contents($url), true);
 		
 		return $user;
 	}
