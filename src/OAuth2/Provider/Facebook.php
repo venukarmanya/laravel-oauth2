@@ -47,4 +47,15 @@ class Facebook extends Provider
 			),
 		);
 	}
+	
+	public function get_user(Token_Access $token)
+	{
+		$url = 'https://graph.facebook.com/me?'.http_build_query(array(
+			'access_token' => $token->access_token,
+		));
+
+		$user = json_decode(file_get_contents($url), true);
+		
+		return $user;
+	}
 }

@@ -78,4 +78,15 @@ class Google extends Provider {
 			'urls' => array(),
 		);
 	}
+	
+	public function get_user(Token_Access $token)
+	{
+		$url = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&'.http_build_query(array(
+			'access_token' => $token->access_token,
+		));
+		
+		$user = json_decode(file_get_contents($url), true);
+		
+		return $user;
+	}
 }
