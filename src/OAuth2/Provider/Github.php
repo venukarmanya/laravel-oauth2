@@ -27,29 +27,44 @@ class Github extends Provider {
 			'access_token' => $token->access_token,
 		));
 
-		$user = json_decode(file_get_contents($url));
+		$opts = array(
+			'http' => array(
+				'method'  => 'GET',             
+				'header'  => 'User-Agent: github.com/madewithlove/laravel-oauth2',
+			)
+		);
 
-		// Create a response from the request
+		$context = stream_context_create($opts);
+		$user = json_decode(file_get_contents($url, false, $context));
+
 		return array(
 			'uid' => $user->id,
 			'nickname' => $user->login,
 			'name' => $user->name,
 			'email' => $user->email,
 			'urls' => array(
-			  'GitHub' => 'http://github.com/'.$user->login,
-			  'Blog' => $user->blog,
+				'GitHub' => 'http://github.com/'.$user->login,
+				'Blog' => $user->blog,
 			),
 		);
 	}
-	
+
 	public function get_user(Token_Access $token)
 	{
 		$url = 'https://api.github.com/user?'.http_build_query(array(
 			'access_token' => $token->access_token,
 		));
 
-		$user = json_decode(file_get_contents($url), true);
-		
+		$opts = array(
+			'http' => array(
+				'method'  => 'GET',             
+				'header'  => 'User-Agent: github.com/madewithlove/laravel-oauth2',
+			)
+		);
+
+		$context = stream_context_create($opts);
+		$user = json_decode(file_get_contents($url, false, $context), true);
+
 		return $user;
 	}
 }
