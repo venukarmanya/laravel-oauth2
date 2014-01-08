@@ -5,7 +5,7 @@
 	"keywords": ["laravel", "oauth2"],
 	"homepage": "http://github.com/madewithlove/laravel-oauth2",
 	"require": {
-		"laravel/framework": "4.0.*"
+		"laravel/framework": "~4"
 	},
 	"autoload": {
 		"psr-0": {
