@@ -4,13 +4,13 @@
 
 Authorize users with your application in a driver-base fashion meaning one implementation works for multiple OAuth 2 providers. This is only to authenticate onto OAuth2 providers and not to build an OAuth2 service.
 
-Note that this Spark ONLY provides the authorization mechanism. There's an example controller below, however in a later version there will be a full controller.
+Note that this package *ONLY* provides the authorization mechanism. There's an example controller below.
 
 ## Installation via Composer
 
 Add this to you composer.json file, in the require object;
 
-    "madewithlove/laravel-oauth2": "0.2.*"
+    "madewithlove/laravel-oauth2": "0.4.*"
 
 After that, run composer install to install Laravel OAuth 2.0.
 
