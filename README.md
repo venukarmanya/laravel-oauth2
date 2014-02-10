@@ -17,14 +17,16 @@ After that, run composer install to install Laravel OAuth 2.0.
 ## Currently Supported
 
 - Facebook
+- Foursquare
 - GitHub
 - Google
-- Windows Live
-- YouTube
+- iHealth
+- Jawbone
+- Mailchimp
 - Moves
 - Runkeeper
-- Foursquare
-- iHealth
+- Windows Live
+- YouTube
 
 ## Usage Example
 
