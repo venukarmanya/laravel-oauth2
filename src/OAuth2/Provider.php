@@ -143,7 +143,7 @@ abstract class Provider {
 			'state' 			=> $state,
 			'scope'				=> is_array($this->scope) ? implode($this->scope_seperator, $this->scope) : $this->scope,
 			'response_type' 	=> 'code',
-			'approval_prompt' => 'force' // - google force-recheck
+			'approval_prompt' 	=> isset($options['approval_prompt']) ? $options['approval_prompt'] : 'force' // - google force-recheck
 		);
 
 		// Searches for params that have a non standard index
