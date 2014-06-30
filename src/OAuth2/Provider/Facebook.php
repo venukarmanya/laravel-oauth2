@@ -34,7 +34,7 @@ class Facebook extends Provider
 		// Create a response from the request
 		return array(
 			'uid' => $user->id,
-			'nickname' => $user->username,
+			'nickname' => (property_exists($user, 'username')?$user->username:NULL),
 			'name' => $user->name,
 			'email' => $user->email,
 			'location' => !empty($user->hometown->name) ? $user->hometown->name : null,
