@@ -38,7 +38,7 @@ class Facebook extends Provider
 			'first_name'=> (property_exists($user, 'first_name') ? $user->first_name : null),
 			'last_name'=> (property_exists($user, 'last_name') ? $user->last_name : null),
 			'name' => $user->name,
-			'email' => $user->email,
+			'email' => (property_exists($user, 'email') ? $user->email : null),
 			'location' => !empty($user->hometown->name) ? $user->hometown->name : null,
 			'gender' => $user->gender,
 			'timezone' => $user->timezone,
