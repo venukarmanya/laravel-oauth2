@@ -40,7 +40,7 @@ class Facebook extends Provider
 			'name' => $user->name,
 			'email' => (property_exists($user, 'email') ? $user->email : null),
 			'location' => !empty($user->hometown->name) ? $user->hometown->name : null,
-			'gender' => $user->gender,
+			'gender' => (property_exists($user, 'gender') ? $user->gender : null),
 			'timezone' => $user->timezone,
 			'verified' => $user->verified,
 			'image' => 'https://graph.facebook.com/me/picture?type=normal&access_token='.$token->access_token,
