@@ -23,8 +23,11 @@ After that, run composer install to install Laravel OAuth 2.0.
 - iHealth
 - Jawbone
 - Mailchimp
+- Misfit
 - Moves
 - Runkeeper
+- Strava
+- Under Armour
 - Windows Live
 - YouTube
 

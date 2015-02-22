@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace OAuth2;
 
@@ -79,10 +79,10 @@ abstract class Provider {
 		}
 
 		$this->client_id = $options['id'];
-		
+
 		// Set redirect uri
 		$this->redirect_uri = \URL::to(\Request::path()); // '/'.ltrim(Laravel\URI::current(), '/');
-			
+
 		// Set options
 		isset($options['callback']) and $this->callback = $options['callback'];
 		isset($options['secret']) and $this->client_secret = $options['secret'];
@@ -172,6 +172,7 @@ abstract class Provider {
 			'client_id' 	=> $this->client_id,
 			'client_secret' => $this->client_secret,
 			'grant_type' 	=> isset($options['grant_type']) ? $options['grant_type'] : 'authorization_code',
+			'header' 	=> isset($options['header']) ? $options['header'] : '',
 		);
 
 		switch ($params['grant_type'])
@@ -179,11 +180,11 @@ abstract class Provider {
 			case 'authorization_code':
 				$params['code'] = $code;
 				$params['redirect_uri'] = isset($options['redirect_uri']) ? $options['redirect_uri'] : $this->redirect_uri;
-			break;
+				break;
 
 			case 'refresh_token':
 				$params['refresh_token'] = $code;
-			break;
+				break;
 		}
 
 		$response = null;
@@ -197,23 +198,24 @@ abstract class Provider {
 				$response = file_get_contents($url);
 
 				parse_str($response, $return);
-			break;
+				break;
 
 			case 'POST':
 				$postdata = http_build_query($params);
 				$opts = array(
 					'http' => array(
 						'method'  => 'POST',
-						'header'  => 'Content-type: application/x-www-form-urlencoded',
+						'header'  => 'Content-type: application/x-www-form-urlencoded'. PHP_EOL . $params['header'],
 						'content' => $postdata
 					)
 				);
+
 				$_default_opts = stream_context_get_params(stream_context_get_default());
 				$context = stream_context_create(array_merge_recursive($_default_opts['options'], $opts));
 				$response = file_get_contents($url, false, $context);
 
 				$return = json_decode($response, true);
-			break;
+				break;
 
 			default:
 				throw new \OutOfBoundsException("Method '{$this->method}' must be either GET or POST");
@@ -228,11 +230,11 @@ abstract class Provider {
 		{
 			case 'authorization_code':
 				return Token::factory('access', $return);
-			break;
+				break;
 
 			case 'refresh_token':
 				return Token::factory('refresh', $return);
-			break;
+				break;
 		}
 
 	}
