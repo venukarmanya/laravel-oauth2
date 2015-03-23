@@ -3,15 +3,12 @@
 namespace OAuth2\Provider;
 
 use OAuth2\Provider;
-use OAuth2\Token_Access;
 use OAuth2\Token;
 use OAuth2\Exception;
 
 class Ihealth extends Provider
 {
 	public $name = 'ihealth';
-
-	// public $uid_key = 'uid';
 
 	public $scope = array('OpenApiActivity', 'OpenApiBG', 'OpenApiBP', 'OpenApiSleep', 'OpenApiSpO2', 'OpenApiUserInfo', 'OpenApiWeight');
 
@@ -32,21 +29,25 @@ class Ihealth extends Provider
 	}
 
 	public function access($code, $options = array()) {
+
+		$type = isset($options['grant_type']) ? $options['grant_type'] : 'authorization_code';
 		$params = array(
 			'client_id' 	=> $this->client_id,
 			'client_secret' => $this->client_secret,
-			'grant_type' 	=> isset($options['grant_type']) ? $options['grant_type'] : 'authorization_code',
+			'redirect_uri' => isset($options['redirect_uri']) ? $options['redirect_uri'] : $this->redirect_uri,
 		);
 
-		switch ($params['grant_type'])
+		switch ($type)
 		{
 			case 'authorization_code':
 				$params['code'] = $code;
-				$params['redirect_uri'] = isset($options['redirect_uri']) ? $options['redirect_uri'] : $this->redirect_uri;
+				$params['grant_type'] = $type;
 			break;
 
 			case 'refresh_token':
 				$params['refresh_token'] = $code;
+				$params['response_type'] = 'refresh_token';
+				$params['UserID'] = $options['uid'];
 			break;
 		}
 
@@ -97,7 +98,7 @@ class Ihealth extends Provider
 		// Unsets no longer used indexes
 		unset($return['AccessToken'], $return['Expires'], $return['RefreshToken'], $return['UserID']);
 
-		switch ($params['grant_type'])
+		switch ($type)
 		{
 			case 'authorization_code':
 				return Token::factory('access', $return);
