@@ -27,6 +27,7 @@ After that, run composer install to install Laravel OAuth 2.0.
 - Moves
 - Runkeeper
 - Strava
+- Uber
 - Under Armour
 - Windows Live
 - YouTube
