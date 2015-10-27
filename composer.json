@@ -1,15 +1,15 @@
 {
-	"name": "madewithlove/laravel-oauth2",
+	"name": "SimpleUsername/laravel-oauth2",
 	"type": "library",
 	"description": "Authorize users in your application with multiple OAuth 2.0 providers.",
 	"keywords": ["laravel", "oauth2"],
-	"homepage": "http://github.com/madewithlove/laravel-oauth2",
+	"homepage": "https://github.com/SimpleUsername/laravel-oauth2",
 	"require": {
-		"laravel/framework": "~4"
+		"laravel/framework": "~5"
 	},
 	"autoload": {
-		"psr-0": {
-			"OAuth2": "src/"
+		"psr-4": {
+			"OAuth2\\": "src/"
 		}
 	}
 }
