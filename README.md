@@ -10,7 +10,7 @@ Note that this package *ONLY* provides the authorization mechanism. There's an e
 
 Add this to you composer.json file, in the require object;
 
-    "madewithlove/laravel-oauth2": "0.4.*"
+    "SimpleUsername/laravel-oauth2": "0.4.*"
 
 After that, run composer install to install Laravel OAuth 2.0.
 
