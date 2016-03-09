@@ -9,6 +9,12 @@ Note that this package *ONLY* provides the authorization mechanism. There's an e
 ## Installation via Composer
 
 Add this to you composer.json file, in the require object;
+"repositories": [
+        {
+            "type": "vcs",
+            "url":  "https://github.com/venukarmanya/laravel-oauth2"
+        }
+    ],
 
     "venukarmanya/laravel-oauth2": "0.4.*"
 
